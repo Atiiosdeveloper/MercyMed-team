@@ -4,7 +4,7 @@ Editable team copy for the AI Lab. Original designer: **Atai Sultanbekov** (team
 Copied from the original submission (`personal-page/hw7`, mercymed website v2), which stays unchanged.
 All team edits go in this repository.
 
-Preview: https://atiiosdeveloper.github.io/mercymed-team/
+Preview: https://atiiosdeveloper.github.io/MercyMed-team/
 
 ---
 
