@@ -8,51 +8,31 @@ Preview: https://atiiosdeveloper.github.io/MercyMed-team/
 
 ---
 
-# Original README (v2, Assignment 7)
+## AI Lab changes (v3) – checked against the client meeting transcript and presentation
+- **Buttons:** orange (Orange 4) instead of bright red – Dr. Lukas: "not just the brightest red, but something going towards the orange".
+- **Hero:** new message "Care for the whole family, in one place", focus on children, real team photos.
+- **About:** clinic history (mobile clinics for 10+ years, clinic opened in October 2023) and "What we bring to Kyrgyzstan".
+- **Services:** full list from the presentation – consultations (family medicine, pediatrics, gynecology,
+  pulmonology, pediatric oncology, physiotherapy, infusions; outpatient only), preventive check-ups,
+  ultrasound/EKG/vision/audiometry (after a consultation), in-house lab with 30% discount,
+  medical documents & certificates, pregnancy & doula support.
+- **Booking:** ultrasound/lab removed from the form (patients see a doctor first). New optional fields:
+  child or adult consultation, and preferred doctor. Required: name and surname, date of birth, phone.
+- **New section "For international patients"** (6 languages, short-term help, travel/insurance documents).
+- **Team:** all 10 staff with photos, role and short bio (from the "Our team" slide and the meeting).
+- **Medical education:** corrected – students have trained here; residents are planned, not yet.
+- **Mobile clinics:** details from the meeting + real photo. **FAQ** added. Address now also mentions Ala-Too University.
+- **Fonts:** lighter headings (Open Sans) – the client prefers finer, modern fonts.
+- **Search:** page title/description with "English-speaking doctors", "family & children's clinic", plus schema.org data.
 
-First draft of the MercyMed Medical Center website, built with AI assistance (Claude) from:
-- the Team 1 PRD (v1.0, 30.10.2026),
-- the MercyMed Logo Guidelines (colours, logo, mission/vision/values),
-- the Website Client Questionnaire (Oct 2026).
-
-## Changes in v2 (from teammate feedback)
-- **Services (Improve):** 6 services instead of 3, each with "Good for", a price line and an
-  "Ask about price" button that opens WhatsApp with the question ready; plus 3 "how it works" steps.
-  Prices are not invented: they show "ask us on WhatsApp" until added in `js/config.js`.
-- **Booking (Fix):** the WhatsApp button now works. "Send via WhatsApp" opens WhatsApp with the
-  booking message filled in (name, date of birth, phone, optional service). Added "Copy message",
-  a floating WhatsApp button and a "Message us on WhatsApp" button in Contact.
-  Once the clinic number is set in `js/config.js`, messages go straight to the receptionist.
-- **Contact (AI-assisted Improve):** Google Map of the Ayu Grand landmark with Google Maps and 2GIS links,
-  and an opening-hours table ready to fill in. Hours stay "TBC" until MercyMed confirms them.
-- **Team (AI-assisted Fix):** replaced the "[Name TBC]" cards with a "profiles coming soon" card.
-  Real profiles are added in `js/config.js` and appear automatically in all 3 languages.
-- **Easy updates:** WhatsApp number, Instagram handle, prices and team all live in `js/config.js`.
+Still waiting for MercyMed: WhatsApp number, phone, email, exact address, opening hours, prices,
+Instagram handle (for the feed), years of experience per staff member.
+Not done yet (team decision pending): an easy way for clinic staff to update the site without editing code.
 
 ## Files
-- `index.html` – the page (English text lives here)
-- `css/style.css` – styles; brand colours are defined once at the top
-- `js/i18n.js` – Russian and Kyrgyz text (AI drafts, marked "Translation pending review")
-- `js/config.js` – clinic settings to update: WhatsApp number, Instagram, prices, team
-- `js/main.js` – mobile menu, language switch, services, team, WhatsApp booking
-- `images/mercymed-emblem.png` – logo emblem taken from the brand guide
-
-## Brand colours used (Logo Guidelines p.05)
-| Name | CMYK | Hex |
-|---|---|---|
-| Grey (text) | 0/0/0/75 | #58595B |
-| Red | 0/100/100/0 | #EC1C24 |
-| Yellow | 0/0/100/0 | #FFF100 |
-| Orange 1 | 0/30/100/0 | #FCB813 |
-| Orange 2 | 0/50/100/0 | #F6921E |
-| Orange 3 | 0/65/100/0 | #F37920 |
-| Orange 4 | 0/80/100/0 | #F05A22 |
-
-Plus white for the light background (client request) and transparent tints of the colours above.
-
-## Waiting on the client (shown as "TBC" on the site)
-Exact address and map, phone, email, WhatsApp number, opening hours, Instagram handle,
-team names/bios/photos, clinic history, full service list and prices, approved photos,
-and review of the Russian and Kyrgyz translations.
-
-To send bookings straight to the clinic, put its number in `whatsappNumber` in `js/config.js`.
+- `index.html` – the page (English text)
+- `js/i18n.js` – Russian and Kyrgyz text
+- `js/config.js` – team, prices, WhatsApp number, Instagram
+- `js/main.js` – menu, languages, team, booking
+- `css/style.css` – styles (brand colours at the top)
+- `images/` – logo emblem, team photos and mobile clinic photo (from the client presentation)
