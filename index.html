@@ -331,15 +331,18 @@
         <form id="book-form" class="form" novalidate>
           <div class="field">
             <label for="f-name" data-i18n="fName">Name and surname</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" required>
+            <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="err-name">
+            <p class="field-error" id="err-name" hidden data-i18n="errName">Please enter your name and surname.</p>
           </div>
           <div class="field">
             <label for="f-dob" data-i18n="fDob">Date of birth</label>
-            <input id="f-dob" name="dob" type="date" required>
+            <input id="f-dob" name="dob" type="date" required aria-describedby="err-dob">
+            <p class="field-error" id="err-dob" hidden data-i18n="errDob">Please enter a valid date of birth (it cannot be in the future).</p>
           </div>
           <div class="field">
             <label for="f-phone" data-i18n="fPhone">Phone number</label>
-            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+996 ..." required>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+996 ..." required aria-describedby="err-phone">
+            <p class="field-error" id="err-phone" hidden data-i18n="errPhone">Please enter a valid phone number (at least 9 digits, e.g. +996 555 123 456).</p>
           </div>
           <div class="field">
             <label for="f-type" data-i18n="fType">Consultation (optional)</label>
@@ -355,7 +358,6 @@
               <option value="" data-i18n="fDoctorAny">Any available doctor</option>
             </select>
           </div>
-          <p class="form-error" id="form-error" role="alert" hidden data-i18n="fError">Please fill in your name, date of birth and phone number.</p>
           <button type="submit" class="btn btn-primary btn-wa-main">
             <svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/></svg>
             <span data-i18n="fSubmit">Send via WhatsApp</span>

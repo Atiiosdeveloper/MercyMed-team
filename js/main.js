@@ -127,7 +127,6 @@
   }
 
   /* ---------- Booking via WhatsApp ---------- */
-  var error = document.getElementById("form-error");
   var preview = document.getElementById("preview");
   var previewText = document.getElementById("preview-text");
   var waLink = document.getElementById("wa-link");
@@ -149,11 +148,47 @@
     return msg;
   }
 
+  /* Validation: name, a date of birth that is not in the future,
+     and a phone number with at least 9 digits. */
+  function todayISO() {
+    var d = new Date();
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString().slice(0, 10);
+  }
+  form.dob.max = todayISO();
+
+  var checks = [
+    { input: form.name, error: "err-name", ok: function (v) { return v.trim().length >= 2; } },
+    { input: form.dob, error: "err-dob", ok: function (v) { return !!v && v <= todayISO() && v >= "1900-01-01"; } },
+    { input: form.phone, error: "err-phone", ok: function (v) {
+        return /^[0-9+()\-\s]+$/.test(v.trim()) && v.replace(/\D/g, "").length >= 9;
+      } }
+  ];
+  function showError(c, bad) {
+    document.getElementById(c.error).hidden = !bad;
+    if (bad) c.input.setAttribute("aria-invalid", "true");
+    else c.input.removeAttribute("aria-invalid");
+  }
+  function validate() {
+    var firstBad = null;
+    checks.forEach(function (c) {
+      var bad = !c.ok(c.input.value);
+      showError(c, bad);
+      if (bad && !firstBad) firstBad = c.input;
+    });
+    if (firstBad) firstBad.focus();
+    return !firstBad;
+  }
+  // Clear a field's error as soon as it is fixed
+  checks.forEach(function (c) {
+    c.input.addEventListener("input", function () {
+      if (c.input.getAttribute("aria-invalid") === "true" && c.ok(c.input.value)) showError(c, false);
+    });
+  });
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    var ok = form.name.value.trim() && form.dob.value && form.phone.value.trim();
-    error.hidden = !!ok;
-    if (!ok) return;
+    if (!validate()) { preview.hidden = true; return; }
     var msg = buildMessage();
     preview.hidden = false;
     copyOk.hidden = true;

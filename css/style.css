@@ -180,7 +180,11 @@ a { color: var(--red); }
 .field label { display: block; font-weight: 700; margin-bottom: 6px; }
 .field input { width: 100%; min-height: 48px; padding: 10px 14px; font: 1rem var(--font-body); color: var(--grey); border: 2px solid var(--line); border-radius: 10px; background: var(--white); }
 .field input:focus { border-color: var(--orange-2); outline: none; box-shadow: 0 0 0 3px rgba(246,146,30,.3); }
-.form-error { color: var(--red); font-weight: 700; }
+/* Field errors: red border + grey text (red text on white is below 4.5:1) */
+.field-error { margin: 6px 0 0; font-size: .92rem; font-weight: 600; color: var(--grey); display: flex; gap: 6px; }
+.field-error::before { content: "!"; flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--red); color: var(--white); font-weight: 700; font-size: .8rem; display: grid; place-items: center; }
+.field-error[hidden] { display: none; }
+.field input[aria-invalid="true"] { border-color: var(--red); }
 .preview { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
 .preview-label { font-weight: 700; margin-bottom: 6px; }
 .preview pre { white-space: pre-wrap; font: .95rem/1.5 var(--font-body); background: var(--tint); border-radius: 10px; padding: 14px; margin: 0; }
