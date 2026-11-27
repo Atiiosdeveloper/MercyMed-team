@@ -256,9 +256,21 @@
     document.querySelectorAll("main section[id]").forEach(function (s) { io.observe(s); });
   }
 
+  /* ---------- First visit: use the browser's language ---------- */
+  // Kyrgyz or Russian browsers open the site in that language; others get English.
+  // A language the visitor picks with EN/RU/KY is remembered and wins next time.
+  function browserLanguage() {
+    var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
+    for (var i = 0; i < list.length; i++) {
+      var code = String(list[i]).toLowerCase().split("-")[0];
+      if (code === "ky" || code === "ru" || code === "en") return code;
+    }
+    return "en";
+  }
+
   /* ---------- Start ---------- */
   renderInstagram();
   var saved = null;
   try { saved = localStorage.getItem("mm-lang"); } catch (e) { /* ignore */ }
-  setLanguage(saved || "en");
+  setLanguage(saved || browserLanguage());
 })();
