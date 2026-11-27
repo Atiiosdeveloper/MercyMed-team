@@ -132,16 +132,23 @@
   var waLink = document.getElementById("wa-link");
   var copyOk = document.getElementById("copy-ok");
 
+  // 2026-12-03 -> 03.12.2026, the format used in Kyrgyzstan
+  function formatDate(iso) {
+    var p = iso.split("-");
+    return p.length === 3 ? p[2] + "." + p[1] + "." + p[0] : iso;
+  }
+
   function buildMessage() {
     var lines = [
       t("msgHello"),
       t("msgName") + ": " + form.name.value.trim(),
-      t("msgDob") + ": " + form.dob.value,
+      t("msgDob") + ": " + formatDate(form.dob.value),
       t("msgPhone") + ": " + form.phone.value.trim()
     ];
     var type = form.type.value;
     if (type) lines.push(t("msgType") + ": " + t(type === "child" ? "fTypeChild" : "fTypeAdult"));
     if (form.doctor.value) lines.push(t("msgDoctor") + ": " + form.doctor.value);
+    if (form.prefdate.value) lines.push(t("msgDate") + ": " + formatDate(form.prefdate.value));
     var msg = lines.join("\n");
     previewText.textContent = msg;
     waLink.href = waUrl(msg);
@@ -156,13 +163,16 @@
     return d.toISOString().slice(0, 10);
   }
   form.dob.max = todayISO();
+  form.prefdate.min = todayISO();   // no past dates for the appointment
 
   var checks = [
     { input: form.name, error: "err-name", ok: function (v) { return v.trim().length >= 2; } },
     { input: form.dob, error: "err-dob", ok: function (v) { return !!v && v <= todayISO() && v >= "1900-01-01"; } },
     { input: form.phone, error: "err-phone", ok: function (v) {
         return /^[0-9+()\-\s]+$/.test(v.trim()) && v.replace(/\D/g, "").length >= 9;
-      } }
+      } },
+    // Optional: empty is fine, otherwise today or later
+    { input: form.prefdate, error: "err-date", ok: function (v) { return !v || v >= todayISO(); } }
   ];
   function showError(c, bad) {
     document.getElementById(c.error).hidden = !bad;

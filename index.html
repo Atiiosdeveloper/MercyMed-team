@@ -358,6 +358,11 @@
               <option value="" data-i18n="fDoctorAny">Any available doctor</option>
             </select>
           </div>
+          <div class="field">
+            <label for="f-date" data-i18n="fDate">Preferred appointment date (optional)</label>
+            <input id="f-date" name="prefdate" type="date" aria-describedby="err-date">
+            <p class="field-error" id="err-date" hidden data-i18n="errDate">Please choose today or a future date.</p>
+          </div>
           <button type="submit" class="btn btn-primary btn-wa-main">
             <svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/></svg>
             <span data-i18n="fSubmit">Send via WhatsApp</span>
